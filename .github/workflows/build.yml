@@ -3,19 +3,18 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # استفاده از نسخه پایدار لینوکس برای بیلدوزر
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4  # آپدیت به نسخه ۴
 
       - name: Build with Buildozer
-        uses: ArtemGovorov/buildozer-action@v1
+        uses: ToonSGem/buildozer-action@v1.2.3  # استفاده از نسخه بروزرسانی شده و فعال بیلدوزر
         with:
           workdir: .
           buildozer_version: stable
 
       - name: Upload APK Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # آپدیت اجباری به نسخه ۴ برای رفع ارور گیت‌هاب
         with:
           name: package
           path: bin/*.apk
-          
